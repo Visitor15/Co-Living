@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_header_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/iv_user_header_pic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="64dip"
+        android:background="@drawable/test_banner" />
+
+    <com.forged.co_living.ui.CoLivingTextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#88FFFFFF"
+        android:gravity="center_horizontal"
+        android:padding="8dip"
+        android:text="Nick Champagne"
+        android:textColor="#282828"
+        android:textScaleX="0.6"
+        android:textSize="48sp" />
+
+    <com.forged.co_living.ui.ProfilePicImageView
+        android:id="@+id/iv_profile_pic"
+        android:layout_width="128dip"
+        android:layout_height="128dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>
