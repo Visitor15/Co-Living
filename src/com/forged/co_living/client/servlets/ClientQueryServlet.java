@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Set;
 
@@ -25,18 +26,19 @@ import org.apache.http.util.EntityUtils;
 import android.util.Base64;
 import android.util.Log;
 
+import com.forged.co_living.MainActivity;
 import com.forged.co_living.client.BaseServlet;
 import com.forged.co_living.client.ConnectionManager;
 import com.forged.co_living.client.MIMETypeConstantsIF;
 
 public class ClientQueryServlet extends BaseServlet {
-	
+
 	public static final String TAG = "ClientQueryServlet";
 
 	private static final String QUERY_URI = "http://192.168.1.3:8080/query";
 
 	private static final String QUERY_PARAM = "queryParam";
-	
+
 	private static final String TEST_QUERY = "SELECT * FROM users.usernames";
 
 	private Hashtable<String, Serializable> resultsMap;
@@ -131,11 +133,23 @@ public class ClientQueryServlet extends BaseServlet {
 
 	private void writeHashTable(Hashtable<String, Serializable> resultsMap) {
 
+		ArrayList<String> stringList = new ArrayList<String>();
+
 		Set<String> keySet = resultsMap.keySet();
 
 		for(int i = 0; i < resultsMap.keySet().size(); i++) {
+
+			if(resultsMap.get((String) keySet.toArray()[i]) instanceof ArrayList<?>) {
+				stringList = (ArrayList<String>) resultsMap.get((String) keySet.toArray()[i]);
+				MainActivity.getInstanceActivity().showResultSet(stringList);
+			}
+
 			String val = resultsMap.get((String) keySet.toArray()[i]).toString();
+
 			Log.d(getClass().getSimpleName(), "NCC - data hashtable from servlet = " + val);
+
 		}
+
+
 	}
 }
